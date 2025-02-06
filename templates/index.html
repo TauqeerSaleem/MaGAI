@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manim Interactive Web</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black;
+            color: white;
+            font-family: monospace;
+        }
+        #render-container {
+            width: 800px;
+            height: 600px;
+            background-color: #222;
+            border: 1px solid white;
+        }
+        #terminal-container {
+            width: 800px;
+            height: 300px;
+            border: 1px solid white;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Manim Interactive Web</h2>
+    
+    <div id="render-container">
+        <h4 style="text-align: center;">Manim Pyglet Output</h4>
+        <video id="pyglet-video" width="100%" height="100%" autoplay controls>
+            <source src="udp://localhost:1234" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="terminal-container"></div>
+
+    <script>
+        // Initialize the terminal
+        const socket = io.connect();
+        const term = new Terminal();
+        term.open(document.getElementById('terminal-container'));
+    
+        let commandBuffer = ""; // ✅ Stores user input before sending
+    
+        term.onData(function(data) {
+            if (data === '\r') {  // ✅ Send only when Enter is pressed
+                socket.emit("input", {input: commandBuffer});
+                commandBuffer = "";  // ✅ Clear the buffer after sending
+            } else if (data === '\u007f') {  // ✅ Handle backspace
+                commandBuffer = commandBuffer.slice(0, -1);
+                term.write("\b \b");  // ✅ Erase last character
+            } else {
+                commandBuffer += data;
+                term.write(data);  // ✅ Display input in terminal
+            }
+        });
+    
+        socket.on("output", function(data) {
+            term.writeln(data.output);
+        });
+    </script>
+
+</body>
+</html>
