@@ -13,3 +13,6 @@ Main Directory/
 │── terminal.py         → Terminal interaction
 │── manim_runner.py     → Runs Manim animation
 │── Canvas.py           → Manim scene
+
+##
+Run main.py for the app to start
