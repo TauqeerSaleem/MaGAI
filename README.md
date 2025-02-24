@@ -4,7 +4,7 @@ This project aims to create an GUI application targeted at teachers and students
 ## Folder Structure
 
 We'll follow the MVC (Model-View-Controller) approach:
-Main Directory/
+Main Directory/ \n
 │── main.py             → Entry point, initializes the app.
 │── ui_main.py          → Main UI logic (ManimUI class).
 │── sidebar.py          → Left Sidebar (Animations, Objects)
