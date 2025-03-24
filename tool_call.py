@@ -20,8 +20,8 @@ class ToolCall():
                 {
                     "type": "function",
                     "function": {
-                        "name": "add_sphere",
-                        "description": "returns the code for adding a 3d/ three dimensional sphere manim scene",
+                        "name": "add_circle",
+                        "description": "returns the code for adding a circle in the manim scene",
                         "parameters": {
                             "type": "array",
                             "properties": {
