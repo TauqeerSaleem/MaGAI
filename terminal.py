@@ -36,4 +36,3 @@ class Terminal(QTextEdit):
             self.terminal_output.append(f"$ {command}")  # Show command in terminal output
             self.process.write((command + "\n").encode())  # Send command to subprocess
             self.terminal_input.clear()  # Clear input field after sending
-
