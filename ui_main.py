@@ -8,7 +8,7 @@ from manim_runner import ManimRunner
 class ManimUI(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("MAAG - Manim Ai And GUI")
+        self.setWindowTitle("MaGAI - Manim Gui AI")
         self.setGeometry(200, 200, 1200, 700)
 
         self.central_widget = QWidget()
@@ -19,15 +19,15 @@ class ManimUI(QMainWindow):
         self.terminal = Terminal()
 
         # ✅ Add modular components
-        self.sidebar = LeftSidebar()
+        self.left_sidebar = LeftSidebar(self.terminal)
         self.editor = Editor(self.terminal)  # Pass terminal to Editor
-        self.right_sidebar = RightSidebar()
+        self.right_sidebar = RightSidebar(self.terminal, self.left_sidebar)
 
         # Start 
         self.manim_runner = ManimRunner(self.terminal)
 
         # ✅ Layout Management
-        self.layout.addLayout(self.sidebar, 1)
+        self.layout.addLayout(self.left_sidebar, 1)
         self.layout.addLayout(self.editor, 5)
         self.layout.addLayout(self.right_sidebar, 1)
         self.central_widget.setLayout(self.layout)
