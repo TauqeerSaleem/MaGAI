@@ -1,7 +1,6 @@
 from manim import *
 from manim.opengl import *
-import numpy as np
-import math
+# import numpy as np ALREADY IN THE INTERACTIVE MODE
 
 class Canvas(Scene):
     def construct(self):
