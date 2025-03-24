@@ -1,4 +1,4 @@
-# Manim GUI with AI
+# MaGAI - Manim Gui AI
 This project aims to create an GUI application targeted at teachers and students for creating interactive manim animations during classes and studies without focusing too much on coding. The main attraction/ selling point for this app should be its easy to use GUI and a reliable AI to translate user's prompt into animations (current AI's like ChatGPT produce unreliable and imprecise animations)
 
 ## Folder Structure
